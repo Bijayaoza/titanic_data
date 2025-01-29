@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# titanic
-Logistic Regression,Random Forest,neural network model comparision
-=======
 # Titanic Survival Prediction
 
 This repository contains an implementation of supervised machine learning models to predict Titanic survival outcomes. The project is available on Kaggle, making it easy to run without requiring local setup.
@@ -13,47 +9,55 @@ This repository contains an implementation of supervised machine learning models
 4. [Output Comparison Between Models](#output-comparison-between-models)
 
 ## 1. Setup & Cloning the Project
-#note:while using kaggle notebook at the right (side bar) internet should be on manually
+### Kaggle Notebook (Preferred)
+1. Enable Internet in Kaggle Notebook:
+   - Click on Settings (⚙️) in the right-side panel.
+   - Toggle "Internet" to "On."
+   - If the right sidebar is not visible, enable it from "View."
 
-## Kaggle Notebook(prefer)
-1. Enable Internet in Kaggle Notebook
-By default, Kaggle disables internet access for security reasons. To enable it:
+2. Open the Kaggle Notebook:
+   - [Click here to open the Kaggle Notebook](https://www.kaggle.com/code/bijayaojha/titan-supervised)
+   - Click on "Edit" and "Run All" to execute the project.
 
-Click on Settings (⚙️) in the right-side panel.
-Toggle "Internet" to "On."
-if right side bar is not there then enable from view
+### GitHub Repository
+Download the GitHub repository: [Click here](https://github.com/Bijayaoza/titanic.git)
 
+It contains:
+- `titan-supervised (2).ipynb` — Jupyter Notebook file
+- `titanic (1).zip` — Dataset zip file (unzip before uploading to Kaggle)
 
-## Since the project is hosted on Kaggle, no local setup is required.if you want to access it with dataset:
+### Package Versions
+If using Kaggle, required packages are already included. To install manually:
 ```bash
- https://www.kaggle.com/code/bijayaojha/titan-supervised
-
+pip install pandas==2.2.2 numpy==1.26.4 matplotlib==3.7.5 scikit-learn==1.6.1 tensorflow==2.17.1 seaborn==0.12.2 scikeras==0.13.0
 ```
-Click on edit and run All project #Note: turn ON the internet setting on kaggle
-
-[Click here to open the Kaggle Notebook](https://www.kaggle.com/code/)
-  click on  +new notebook
-
-  
-download the github repository :[Click here to open github]( https://github.com/Bijayaoza/titanic_data.git)
-
-it contains:
-1)titan-supervised (2).ipynb --jupiter notebook file
-2)titanic (1).zip  ---dataset zip file
-
-step2:(if using kaggle notebook by downloading file from kaggle)
-  import 
-
-      
-
-
 
 ## 2. Preprocessing Steps
-The dataset is derived from the Titanic passenger list and includes features that help predict survival rates. Several preprocessing steps are applied:
-- **Handling Missing Values:** Imputing missing ages using the median.
-- **Feature Encoding:** Converting categorical variables like `Sex` and `Embarked` into numerical format using one-hot encoding.
-- **Feature Scaling:** Standardizing numerical features to ensure balanced model training.
-- **Dropping Irrelevant Features:** Removing features that do not contribute significantly to predictions.
+The dataset is derived from the Titanic passenger list and includes features that help predict survival rates.
+
+### Data Processing Steps
+- **Feature Analysis:**
+  - A heatmap is used to analyze feature relationships with the target variable.
+  - The correlation table indicates that `Pclass` (-0.34) has the highest negative correlation, while `Fare` (0.26) has the highest positive correlation.
+- **Feature Selection:**
+  - The features `Name`, `Ticket`, and `Cabin` are dropped due to their low impact on prediction.
+- **Data Splitting:**
+  - The dataset is split into **80% training and 20% testing** using stratified sampling to balance class distribution.
+  - A histogram visualization confirms that train and test sets are evenly distributed.
+- **Handling Missing Values:**
+  - The `Age` column contains null values, which are filled with the median age.
+- **Feature Encoding:**
+  - Categorical features (`Sex`, `Embarked`) are one-hot encoded into `C`, `S`, `Q`, and `N`.
+  - The original categorical columns are dropped after encoding.
+- **Feature Scaling:**
+  - StandardScaler is used for normalization.
+- **Pipeline for Preprocessing:**
+  ```python
+  ('ageimputer', AgeImputer()),
+  ('featureencoder', FeatureEncoder()),
+  ('featuredropper', FeatureDropper()),
+  ('scaler', StandardScaler())
+  ```
 
 ### Variable Definitions
 | Variable  | Definition                              | Key |
@@ -70,26 +74,50 @@ The dataset is derived from the Titanic passenger list and includes features tha
 | embarked  | Port of Embarkation                   | C = Cherbourg, Q = Queenstown, S = Southampton |
 
 ## 3. Hyperparameter Tuning
-Different models are trained and optimized using GridSearchCV for hyperparameter tuning. The main models tested include:
-- **Logistic Regression**
-- **Random Forest Classifier**
-- **Neural Network** (Using Keras & TensorFlow)
+Different models are trained and optimized using GridSearchCV for hyperparameter tuning.
 
-Each model undergoes hyperparameter tuning to find the optimal values for parameters such as:
-- Number of hidden units for Neural Networks
-- Learning rate and optimizers
-- Number of estimators for Random Forest
+### Logistic Regression Hyperparameters
+```python
+logistic_param_grid = {
+    'classifier__C': [0.01, 0.1, 1, 10],
+    'classifier__solver': ['lbfgs', 'liblinear'],
+    'classifier__max_iter': [100, 200]
+}
+```
+
+### Random Forest Hyperparameters
+```python
+random_forest_param_grid = {
+    'classifier__n_estimators': [50, 100, 200],
+    'classifier__max_depth': [None, 10, 20],
+    'classifier__min_samples_split': [2, 5, 10]
+}
+```
+
+### Neural Network Model
+A simple feedforward neural network is implemented using TensorFlow/Keras:
+```python
+def create_nn_model(hidden_units=64):
+    model = tf.keras.Sequential([
+        tf.keras.Input(shape=(X_train.shape[1],)),
+        tf.keras.layers.Dense(hidden_units, activation='relu'),
+        tf.keras.layers.Dense(32, activation='relu'),
+        tf.keras.layers.Dense(1, activation='sigmoid')
+    ])
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
+    return model
+```
 
 ## 4. Output Comparison Between Models
-After training, models are evaluated based on multiple metrics:
+Models are evaluated based on multiple metrics:
 - **Accuracy**
 - **Precision**
 - **Recall**
 - **F1-score**
 
+### Model Performance Comparison
 A confusion matrix and classification report are generated for each model to visualize performance.
 
 ## GitHub Repository
 [GitHub Link](https://github.com/Bijayaoza/titanic.git)
 
->>>>>>> d3ca149e791af911bdeeca07ef2a9fbdda615219
