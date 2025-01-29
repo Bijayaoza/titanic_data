@@ -1,6 +1,6 @@
 <<<<<<< HEAD
 # titanic
-Logistic Regression,Random Forest,neural network comparision
+Logistic Regression,Random Forest,neural network model comparision
 =======
 # Titanic Survival Prediction
 
@@ -23,16 +23,29 @@ Click on Settings (⚙️) in the right-side panel.
 Toggle "Internet" to "On."
 if right side bar is not there then enable from view
 
-[Click here to open the Kaggle Notebook](https://www.kaggle.com/code/)
-  click on  +new notebook
-  download the github repository :
-      
 
-Since the project is hosted on Kaggle, no local setup is required. However, if you want to run it locally, follow these steps:
+## Since the project is hosted on Kaggle, no local setup is required.if you want to access it with dataset:
 ```bash
-https://github.com/Bijayaoza/titanic.git
+ https://www.kaggle.com/code/bijayaojha/titan-supervised
 
 ```
+Click on edit and run All project #Note: turn ON the internet setting on kaggle
+
+[Click here to open the Kaggle Notebook](https://www.kaggle.com/code/)
+  click on  +new notebook
+
+  
+download the github repository :[Click here to open github]( https://github.com/Bijayaoza/titanic_data.git)
+
+it contains:
+1)titan-supervised (2).ipynb --jupiter notebook file
+2)titanic (1).zip  ---dataset zip file
+
+step2:(if using kaggle notebook by downloading file from kaggle)
+  import 
+
+      
+
 
 
 ## 2. Preprocessing Steps
