@@ -31,6 +31,10 @@ If using Kaggle, required packages are already included. To install manually:
 ```bash
 pip install pandas==2.2.2 numpy==1.26.4 matplotlib==3.7.5 scikit-learn==1.6.1 tensorflow==2.17.1 seaborn==0.12.2 scikeras==0.13.0
 ```
+## Dataset
+
+The dataset used in this project is available on Kaggle:  
+[🔗 Titanic Dataset - Kaggle](https://www.kaggle.com/competitions/titanic/data)
 
 ## 2. Preprocessing Steps
 The dataset is derived from the Titanic passenger list and includes features that help predict survival rates.
