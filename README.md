@@ -20,7 +20,7 @@ This repository contains an implementation of supervised machine learning models
    - Click on "Edit" and "Run All" to execute the project.
 
 ### GitHub Repository
-Download the GitHub repository: [Click here](https://github.com/Bijayaoza/titanic.git)
+Download the GitHub repository: [Click here](https://github.com/Bijayaoza/titanic_data.git)
 
 It contains:
 - `titan-supervised (2).ipynb` — Jupyter Notebook file
